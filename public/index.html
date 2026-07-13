@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Infrastructure Lab</title>
+
+<style>
+
+body {
+    background:#111;
+    color:white;
+    font-family:Arial;
+    padding:40px;
+}
+
+.card {
+    background:#222;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>
+Infrastructure Testing Lab
+</h1>
+
+
+<div class="card">
+
+<h2>Health</h2>
+
+<pre id="health">
+Loading...
+</pre>
+
+</div>
+
+
+<div class="card">
+
+<h2>IP Address</h2>
+
+<pre id="ip">
+Loading...
+</pre>
+
+</div>
+
+
+<div class="card">
+
+<h2>Server</h2>
+
+<pre id="server">
+Loading...
+</pre>
+
+</div>
+
+
+
+<script>
+
+async function load(){
+
+let health =
+await fetch("/api/health");
+
+document
+.getElementById("health")
+.textContent =
+JSON.stringify(
+await health.json(),
+null,
+2
+);
+
+
+let ip =
+await fetch("/api/ip");
+
+
+document
+.getElementById("ip")
+.textContent =
+JSON.stringify(
+await ip.json(),
+null,
+2
+);
+
+
+
+let server =
+await fetch("/api/server");
+
+
+document
+.getElementById("server")
+.textContent =
+JSON.stringify(
+await server.json(),
+null,
+2
+);
+
+
+}
+
+
+load();
+
+</script>
+
+
+</body>
+
+</html>
